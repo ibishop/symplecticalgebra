@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{float}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makeidx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\usepackage{url}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+\title{Notes: Summer 2018 Symplectic Vector Spaces}
+\author{Isaiah Bishop}
+
+\begin{document}
+\fancyhead{}
+\fancyfoot{}			
+\lhead{Bishop}
+\rhead{Page \thepage\ of \pageref{LastPage}}
+
+\maketitle
+
+\begin{abstract}
+This document is meant to describe the research into symplectic vector spaces done in the summer of 2018. While writing and editing keep in mind this is meant to be referenced for ease later on. Nothing here is original work.
+\end{abstract}
+
+\section{Introduction}
+What is a symplectic vector space? Consider a finite-dimensional, real vector space $E$\footnote{Notice the qualifiers: real; finite dimensional. These are important.}
+
+\theoremstyle{definition}
+\begin{definition}
+A Symplectic Vector Space is a pair ($ E,\omega$ ) with $\omega \in \wedge ^ 2 E ^ *$.\footnote{This set is the 2-forms in the dual of $E$} $\omega$ must be non-degenerate, or:
+\[ ker \, \omega := \{ v \in E \, | \, \omega(v,w) =0, \, \forall w \in E \} \] 
+is trivial,e.g $v=0$.
+\end{definition}
+
+\theoremstyle{definition}
+\begin{definition}
+Two symplectic vector spaces are called \textit{symplectomorphic } if there exists an isomorphism $A : E_1 \rightarrow E_2$, with $A^* \omega_2(v,w)= \omega_1$.\footnote{$A^* \omega(v,w)= \omega( Av,Aw)$} A is called a \textit{symplectomorhpism}. The space of symplectomorphisms of ($E, \omega$) is denoted Sp($E$)
+\end{definition}
+
+There are some nice easy examples of symplectic vector spaces
+
+\section{Subspaces of Symplectic Vector Spaces}
+
+\theoremstyle{definition}
+\begin{definition}
+For any subspace $F$, there exists a perpendicular space $$ F^\omega = \{ v \in E \, | \, \omega(v,w)=0, \forall w \in F \}$$
+In English, this space consists of the elements of E which are "perpendicular in $\omega$" to its subspace F. 
+\end{definition}
+
+Since E is assumed to be Finite Dimensional, $\omega$ is non-degenerate if and only if there exists an isomorphism\footnote{Intuitively this is true, as the kernal of $\omega^\flat$ being non trivial implies some elements being mapped to zero in the dual. This then implies elements of the kernal of $\omega$ are non-trivial, since the elements mapped to 0 by $\omega^\flat$ become zero in the wedge product}
+$$ \omega^\flat: E \rightarrow E^*, \langle \omega^\flat(v),w \rangle = \omega(v,w)$$
+Since $F^\omega$ annihilates F, and it contains all elements of $E$ that do so, it follows that 
+
+$$ \text{dim} \, F^\omega = \text{dim} \,  E - \text{dim} \,  F$$
+$$ (F^\omega)^\omega = F$$
+\begin{definition}
+ Given a subspace $F \subseteq E$, F is called 
+ \begin{itemize}
+ \item isotropic, if $F \subseteq F^\omega$
+ \item co-isotropic, if $F^\omega \subseteq F$
+ \item lagrangian, if $F = F^\omega$
+ \item symplectic, if $F \cap F^\omega = \{0\}$
+ \end{itemize}
+\end{definition}
+Note that Lagrangian subspaces become a real workhorse in the proofs that follow.
+\pagebreak
+\begin{lemma}
+For any symplectic vector space,($E,\omega$), there exists a Lagrangian subspace 
+\end{lemma}
+\begin{proof}
+
+
+Let L be an isotropic subspace of $E$. Let L be the maximal isotropic subspace, i.e it is not contained within a larger isotropic subspace. Then L must be Lagrangian: if $L \neq L^\omega$, then choosing any $v \in L^\omega\L$ would produce a larger isotropic subspace $L \oplus $ span$(v)$   
+\end{proof}
+
+Breaking that down, the goal is to prove that the maximal isotropic subspace is lagrangian, since there always exists a maximal isotropic subspace. To do this assume it is not, choose some element in $L^\omega$ but not in $L$. Clearly, $L \oplus $ span$(v)$ is larger than L, so it is not maximal, a contradiction. \par
+It follows immediately from the existence of a Lagrangian subspace and the dimension of perpendicular space that $$  \text{dim} E = \text{dim} \,  L + \text{dim} \, L^\omega = 2 \text{dim} \,  L $$
+In other words, any symplectic space is of even dimension.
+\begin{lemma}
+
+For any finite collection of lagrangian subspaces $L \subseteq Lag(E)$ transversal to each other, or: $$ {\bigcap}_{i=0}^k l_i = \{ 0\}, \, l \in L$$ it is possible to find another lagrangian subspace transversal to L.
+
+\end{lemma}
+
+\begin{proof}
+Similar in structure to the previous proof, but quotient map is used to preserve the transversal property. 
+\end{proof}
+
+\section{Symplectic Bases: Symplectomorphisms Two Ways}
+The following explains a fundamental theorem from two different directions, both provide insight into working with symplectic vector spaces
+\begin{theorem}
+Every symplectic vector space ($E,\omega$) of dimension $2n$ is symplectomorphic to $\mathbb{R}^{2n}$ with the standard $\omega$
+\end{theorem}
+\begin{proof}
+Pick two transversal subspaces $L,M \in $Lag$(E)$. Then the pairing $$ L \times M \rightarrow \mathbb{R}, (v,w) \rightarrow \omega(v,w)$$ is non-degenerate, as $L,M$ are transversal. Since the pairing is non-degenerate $\omega^\flat$ forms the isomorphism: $$ E \rightarrow E^*$$Additionally, $M \hookrightarrow E$,$L \hookrightarrow E$, by definition. The dual of $L \hookrightarrow E$ is $L^* \rightarrow E^*$, which is also an isomorphism. This gives us the composition 
+$$ M \hookrightarrow  E \rightarrow E^* \rightarrow L^*$$
+Thus, $$ M \cong L^*$$
+Choosing a basis for $L$, $e_1,e_2,...,e_n$,and $f_1,f_2,..,f_n$ dual basis for $L^* \cong M$ we get a symplectic basis on $\mathbb{R}^{2n}$, from the original pairing, and with the standard $\omega$ we have the desired result.
+\end{proof}
+
+Lemmas 2.1 and 2.2 are useful as they provide the existence of $L,M$ with their transversality. The goal of the proof is to start with some mapping of the pair $L,M$ to $\mathbb{R}$ and then show that we can form a symplectic basis with the desired form. The dual of L has the necessary basis and combined with the basis in $L$ gives us a compatible basis in $\omega$. The composition gives us these properties for $M$, and hence foir every symplectic vector space.
+
+\begin{theorem}(Theorem 3.1 by induction)
+Every symplectic vector space ($E,\omega$) of dimension $2n$ is symplectomorphic to $\mathbb{R}^{2n}$ with the standard $\omega$
+\end{theorem}
+\begin{proof}
+Since $\omega$ is non-degenerate, there exists $u,v \in E$ with $\omega(u,v)=1$. Thus the space spanned by $u,v$ is symplectic vector space. Consider $W = $(span$(u,v)$)$^\omega$ with dimension $2n -2$. By the inductive hypothesis there exists a basis $$ u_1,u_2,..,u_3,v_1,v_2,...,v_n$$
+that's compatible with $\omega_0$.
+\end{proof}
+\end{document}
+
+
